@@ -1,0 +1,56 @@
+service: chatbot-backend
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  environment:
+    NODE_ENV: ${self:provider.stage}
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY, ''}
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:3000
+        - https://localhost:3000
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowedMethods:
+        - GET
+        - POST
+        - OPTIONS
+      maxAge: 86400
+
+functions:
+  chat:
+    handler: src/handlers/chat.handler
+    timeout: 30
+    events:
+      - httpApi:
+          path: /api/chat
+          method: post
+      - httpApi:
+          path: /api/chat
+          method: options
+
+  health:
+    handler: src/handlers/health.handler
+    timeout: 10
+    events:
+      - httpApi:
+          path: /api/health
+          method: get
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 3001
+    host: localhost
+    cors: true
+    printOutput: true
