@@ -2,39 +2,7 @@
 
 Una aplicación de chatbot inteligente construida con Next.js (frontend) y Node.js con Serverless Framework (backend). El chatbot puede responder preguntas sobre envíos, devoluciones, precios y estado de pedidos utilizando reglas predefinidas y opcionalmente OpenAI.
 
-## 🏗️ Arquitectura
-
-```
-chatbot-fullstack/
-├── frontend/                 # Aplicación Next.js (Puerto 3000)
-│   ├── app/
-│   │   ├── chat/
-│   │   │   └── page.tsx     # Página principal del chat
-│   │   ├── api/
-│   │   │   └── health/
-│   │   │       └── route.ts # Health check del frontend
-│   │   └── layout.tsx
-│   ├── components/
-│   │   └── ChatInterface.tsx # Componente principal del chat
-│   ├── types/
-│   │   └── chat.ts          # Tipos TypeScript
-│   └── .env.local           # Variables de entorno del frontend
-├── backend/                 # Lógica serverless (Puerto 3001)
-│   ├── src/
-│   │   ├── handlers/
-│   │   │   ├── chat.ts      # Handler principal del chat
-│   │   │   └── health.ts    # Handler de health check
-│   │   ├── services/
-│   │   │   ├── chatService.ts
-│   │   │   └── llmService.ts
-│   │   └── utils/
-│   │       └── logger.ts
-│   ├── serverless.yml       # Configuración serverless
-│   └── .env                 # Variables de entorno del backend
-└── README.md
-```
-
-## 🚀 Instalación y Configuración
+## Instalación y Configuración
 
 ### Prerrequisitos
 
