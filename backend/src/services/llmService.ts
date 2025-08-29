@@ -1,10 +1,9 @@
-// services/llmService.ts
 import OpenAI from 'openai';
 import { Logger } from '../utils/logger';
 
 export class LLMService {
   private static openai: OpenAI | null = null;
-  private static readonly TIMEOUT_MS = 10000; // 10 segundos
+  private static readonly TIMEOUT_MS = 10000; 
   private static readonly MAX_TOKENS = 150;
 
   private static initializeClient(): void {

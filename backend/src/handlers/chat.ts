@@ -1,4 +1,3 @@
-// handlers/chat.ts
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { ChatService } from '../services/chatService';
 import { ChatRequest, ErrorResponse } from '../types/chat';
@@ -93,7 +92,6 @@ export const handler = async (
     // Validar longitud de la pregunta
     if (requestData.question.length > 500) {
       Logger.warn('Question too long', { 
-        questionLength: requestData.question.length,
         customerId: requestData.customerId 
       });
       
@@ -109,11 +107,12 @@ export const handler = async (
       };
     }
 
-    // Procesar la pregunta
+   
     const response = await ChatService.processQuestion({
       question: requestData.question.trim(),
       customerId: requestData.customerId?.trim()
     });
+    console.log('LLM response:', response);
 
     return {
       statusCode: 200,

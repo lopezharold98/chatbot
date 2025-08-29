@@ -1,4 +1,3 @@
-// services/chatService.ts
 import { ChatRequest, ChatResponse, TrackingInfo } from '../types/chat';
 import { LLMService } from './llmService';
 import { Logger } from '../utils/logger';

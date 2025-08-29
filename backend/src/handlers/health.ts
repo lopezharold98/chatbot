@@ -1,4 +1,3 @@
-// handlers/health.ts
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { HealthResponse } from '../types/chat';
 import { Logger } from '../utils/logger';

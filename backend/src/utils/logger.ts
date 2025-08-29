@@ -1,4 +1,3 @@
-// utils/logger.ts
 import { LogEvent } from '../types/chat';
 
 export class Logger {

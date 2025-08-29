@@ -9,42 +9,33 @@ provider:
   region: us-east-1
   environment:
     NODE_ENV: ${self:provider.stage}
-    OPENAI_API_KEY: ${env:OPENAI_API_KEY, ''}
-  httpApi:
-    cors:
-      allowedOrigins:
-        - http://localhost:3000
-        - https://localhost:3000
-      allowedHeaders:
-        - Content-Type
-        - Authorization
-      allowedMethods:
-        - GET
-        - POST
-        - OPTIONS
-      maxAge: 86400
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
 
 functions:
   chat:
     handler: src/handlers/chat.handler
     timeout: 30
     events:
-      - httpApi:
+      - http:
           path: /api/chat
           method: post
-      - httpApi:
+          cors: true
+      - http:
           path: /api/chat
           method: options
+          cors: true
 
   health:
     handler: src/handlers/health.handler
     timeout: 10
     events:
-      - httpApi:
+      - http:
           path: /api/health
           method: get
+          cors: true
 
 plugins:
+  - serverless-dotenv-plugin   
   - serverless-plugin-typescript
   - serverless-offline
 

@@ -1,40 +1,32 @@
 // types/chat.ts
+export interface ChatMessage {
+  id: string;
+  content: string;
+  sender: 'user' | 'bot';
+  timestamp: string;
+  tracking?: TrackingInfo;
+  source?: 'rules' | 'llm' | 'default';
+}
+
+export interface TrackingInfo {
+  status: string;
+  eta: string;
+  carrier: string;
+}
+
 export interface ChatRequest {
-    question: string;
-    customerId?: string;
-  }
-  
-  export interface ChatResponse {
-    answer: string;
-    source: 'rules' | 'llm' | 'default';
-    timestamp: string;
-    tracking?: TrackingInfo;
-  }
-  
-  export interface TrackingInfo {
-    status: string;
-    eta: string;
-    carrier: string;
-  }
-  
-  export interface ErrorResponse {
-    error: string;
-    timestamp: string;
-  }
-  
-  export interface HealthResponse {
-    status: 'ok' | 'error';
-    timestamp: string;
-    version?: string;
-  }
-  
-  export interface LogEvent {
-    level: 'info' | 'warn' | 'error';
-    timestamp: string;
-    message: string;
-    question?: string;
-    source?: string;
-    duration?: number;
-    customerId?: string;
-    error?: string;
-  }
+  question: string;
+  customerId?: string;
+}
+
+export interface ChatResponse {
+  answer: string;
+  source: 'rules' | 'llm' | 'default';
+  timestamp: string;
+  tracking?: TrackingInfo;
+}
+
+export interface ApiError {
+  error: string;
+  timestamp: string;
+}
